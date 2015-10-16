@@ -1,5 +1,5 @@
 {
-  "name": "basic app",
+  "name": "basicApp",
   "version": "0.0.3",
   "description": "Example App Template to fool around with",
   "repository": "https://github.com/facebook/flux",
@@ -20,8 +20,8 @@
     "watchify": "^2.1.1"
   },
   "scripts": {
-    "start": "watchify -o public/scripts/dist/bundle.js -v -d js/app.js",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > public/scripts/dist/bundle.min.js",
+    "start": "watchify -o public/scripts/bundle.js -v -d js/app.js",
+    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > public/scripts/bundle.min.js",
     "test": "jest"
   },
   "author": "Mimi Deedee",
