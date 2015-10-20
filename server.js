@@ -1,6 +1,10 @@
 var fs = require('fs'),
   path = require('path'),
   React = require('react'),
+  //new stuff
+  browserify = require('browserify'),
+  babelify = require('babelify'),
+  //end of new stuff
   express = require('express'),
   bodyParser = require('body-parser');
 
@@ -27,6 +31,13 @@ var ejs = require('ejs'),
 
 require('node-jsx').install(); // For loading the main JSX file
 var Application = require('./app/main.js');
+
+browserify({ debug: true })
+  .transform(babelify)
+  .require("./app/main.js", { entry: true })
+  .bundle()
+  .on("error", function (err) { console.log("Error: " + err.message); })
+  .pipe(fs.createWriteStream("./public/scripts/bundle.js"));
 
 // All other routes are sent to the React application
 app.get('*', function(req, res) {
