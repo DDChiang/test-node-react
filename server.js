@@ -1,12 +1,10 @@
-var fs = require('fs'),
-  path = require('path'),
+var express = require('express'),
+  fs = require('fs'),
   React = require('react'),
-  //new stuff
   browserify = require('browserify'),
   babelify = require('babelify'),
-  //end of new stuff
-  express = require('express'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  path = require('path');
 
 //******************************************
 //* SERVER INITIALIZATION
@@ -26,8 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 //allow serving public files
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-var ejs = require('ejs'),
-  path = require('path');
+var ejs = require('ejs');
+
 
 require('node-jsx').install(); // For loading the main JSX file
 var Application = require('./app/main.js');
@@ -55,28 +53,6 @@ app.get('*', function(req, res) {
     }
   });
 });
-
-//later use "passport": "^0.2.2" in package.json for social account authorization
-// app.use(passport.initialize());
-
-// app.get('/api/comments', function(req, res) {
-//   fs.readFile(COMMENTS_FILE, function(err, data) {
-//     res.setHeader('Cache-Control', 'no-cache');
-//     res.json(JSON.parse(data));
-//   });
-// });
-
-// app.post('/api/comments', function(req, res) {
-//   fs.readFile(COMMENTS_FILE, function(err, data) {
-//     var comments = JSON.parse(data);
-//     comments.push(req.body);
-//     fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
-//       res.setHeader('Cache-Control', 'no-cache');
-//       res.json(comments);
-//     });
-//   });
-// });
-
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');

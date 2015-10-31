@@ -5,15 +5,16 @@ var React = require('react'),
   TestPage = require('./components/TestPage');
 
 // React router
-var Router = require('react-router'),
-  Route = Router.Route,
-  DefaultRoute = Router.DefaultRoute;
+var ReactRouter = require('react-router'),
+  Router = ReactRouter.Router,
+  Route = ReactRouter.Route,
+  IndexRoute = ReactRouter.IndexRoute;
 
 var routes = (
-  <Route path='/' handler={App}>
-    <DefaultRoute handler={HomePage}/>
-    <Route path='recipe' handler={RecipePage}/>
-    <Route path='test' handler={TestPage}/>
+  <Route path='/' component={App}>
+    <IndexRoute component={HomePage}/>
+    <Route path='recipe' component={RecipePage}/>
+    <Route path='test' component={TestPage}/>
   </Route>
 );
 

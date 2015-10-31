@@ -1,22 +1,17 @@
-// var React = require('react');
-// var NoteBase = require('./components/NoteTaker');
-
-// var Base = React.createClass({
-//   render: function() {
-//     return (<NoteBase/>);
-//   }
-// });
-
-// React.render(<Base/>, document.getElementById('content'));
-
 var React = require('react');
+var ReactDOM = require('react-dom');
 var App = React.createFactory(require('./components/App'));
 var AppActionCreator = require('./creators/AppActionCreator');
 
-var ExecutionEnvironment = require('react/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('exenv');
 
-var Router = require('react-router');
+var ReactRouter = require('react-router'),
+  Router = ReactRouter.Router,
+  match = ReactRouter.match,
+  RoutingContext = ReactRouter.RoutingContext,
+  ReactDOMServer = require('react-dom/server');
 var routes = require('./routes');
+var createBrowserHistory = require('history/lib/createBrowserHistory'); // The independent history module
 
 /**
  * Application Entry
@@ -25,21 +20,27 @@ var routes = require('./routes');
 
 var Application = {
   start: function(appData, callback) {
-    AppActionCreator.initialize(appData, callback);
-
     if ( ExecutionEnvironment.canUseDOM ) {
       // Client-side rendering
-      Router.run(routes, Router.HistoryLocation, function(Root, state) {
-        React.render(<Root />, document.getElementById('root'));
-      });
+      var history = createBrowserHistory();
+      ReactDOM.render(<Router history={history}>{routes}</Router>, document.getElementById('root'));
     } else {
       // Server-side rendering
       if ( !appData.path ) {
         return callback(new Error('path cannot be null'));
       } else {
-        Router.run(routes, appData.path, function(Root, state) {
-          return callback(null, React.renderToString(<Root />));
-        });
+        match({ routes: routes, location: appData.path },
+          function(err, redirectLocation, renderProps) {
+            if (err) {
+              callback(err);
+            } else if (redirectLocation) {
+              callback(redirectLocation);
+            } else if (renderProps) {
+              callback(null, ReactDOMServer.renderToString(<RoutingContext {...renderProps}/>));
+            } else {
+              callback(404);
+            }
+          });
       }
     }
   }
