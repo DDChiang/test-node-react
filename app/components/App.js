@@ -16,12 +16,17 @@ var App = React.createClass({
   },
   render: function() {
     // The sub component of the application page is handled by "react-router"
-    //var path = this.context.location.pathname;
+    var path = this.context.location.pathname;
+     // If dynamic route, remove id
+    if ( path.indexOf("/video/") === 0 ) {
+      path = "/video";
+    }
 
     return(
       <div>
-        <p>Morning Darkness!</p>
-
+        <p>Morning Morn!</p>
+        { /*children are autmotically populated according to tehcurrent route by react router(>=v1.0.0)*/}
+        {this.props.children}
       </div>
     )
   }
