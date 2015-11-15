@@ -24,7 +24,7 @@ var App = React.createClass({
 
     return(
       <div>
-        <p>Morning Morn!</p>
+        <p>NIGHT Morn!</p>
         { /*children are autmotically populated according to tehcurrent route by react router(>=v1.0.0)*/}
         {this.props.children}
       </div>

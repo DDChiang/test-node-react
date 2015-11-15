@@ -31,7 +31,7 @@ require('node-jsx').install(); // For loading the main JSX file
 var Application = require('./app/main.js');
 
 browserify({ debug: true })
-  .transform(babelify)
+  .transform(babelify, {presets: ["es2015", "react"]})
   .require("./app/main.js", { entry: true })
   .bundle()
   .on("error", function (err) { console.log("Error: " + err.message); })
