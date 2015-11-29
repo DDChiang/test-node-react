@@ -1,13 +1,12 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+var nodemon = require('nodemon');
 var source = require('vinyl-source-stream'); // Used to stream bundle for further handling
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify'); 
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var fs = require('fs');
-var nodemon = require('nodemon');
 
 // var production = process.env.NODE_ENV === 'production';
 
@@ -17,7 +16,7 @@ function javascript(watch) {
 		basedir: __dirname,
 		debug: true,	//sub with !production later
 		cache: {},
-		transform: [babelify],
+		transform: [babelify.configure({presets: ["es2015", "react"]})],
 		packageCache: {},
 		fullPaths: watch
 	});
@@ -48,17 +47,10 @@ gulp.task('sass', function() {
 });
 
 gulp.task('js', function() {
-  // browserify({ debug: true })
-  //   .transform(babelify)
-	 //  .require("./app/main.js", { entry: true })
-	 //  .bundle()
-	 //  .on("error", function(err) { console.log("Error: " + err.message);})
-	 //  .pipe(fs.createWriteStream("./public/scripts/bundle.js"));
-  
   return javascript(false);	 
 });
 
-// watch functions
+// GULP WATCH FUNCTIONS 
 gulp.task('watchSass', function() {
 	gulp.watch(['./app/sass/*.scss', './app/sass/**/*.scss'], ['sass']);
 });

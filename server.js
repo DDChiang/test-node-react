@@ -1,8 +1,5 @@
 var express = require('express'),
   fs = require('fs'),
-  React = require('react'),
-  browserify = require('browserify'),
-  babelify = require('babelify'),
   bodyParser = require('body-parser'),
   path = require('path');
 
