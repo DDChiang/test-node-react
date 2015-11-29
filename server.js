@@ -30,13 +30,6 @@ var ejs = require('ejs');
 require('node-jsx').install(); // For loading the main JSX file
 var Application = require('./app/main.js');
 
-// browserify({ debug: true })
-//   .transform(babelify)
-//   .require("./app/main.js", { entry: true })
-//   .bundle()
-//   .on("error", function (err) { console.log("Error: " + err.message); })
-//   .pipe(fs.createWriteStream("./public/scripts/bundle.js"));
-
 // All other routes are sent to the React application
 app.get('*', function(req, res) {
   var layout = ejs.compile(fs.readFileSync(path.resolve('views/index.ejs'), 'utf8'));
@@ -47,6 +40,7 @@ app.get('*', function(req, res) {
     } else {
       res.status(200).send(layout({
         script: 'scripts/bundle.js',
+        stylesheet: 'css/main.min.css',
         applicationStart: 'Application.start();',
         root: root
       }));

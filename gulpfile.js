@@ -1,25 +1,15 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var source = require('vinyl-source-stream'); // Used to stream bundle for further handling
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babelify = require('babelify'); 
 var concat = require('gulp-concat');
+var rename = require('gulp-rename');
 var fs = require('fs');
 var nodemon = require('nodemon');
 
 // var production = process.env.NODE_ENV === 'production';
-
-// basic: compile js
-gulp.task('js', function() {
-  // browserify({ debug: true })
-  //   .transform(babelify)
-	 //  .require("./app/main.js", { entry: true })
-	 //  .bundle()
-	 //  .on("error", function(err) { console.log("Error: " + err.message);})
-	 //  .pipe(fs.createWriteStream("./public/scripts/bundle.js"));
-  
-  return javascript(false);	 
-});
 
 function javascript(watch) {
 	var bundler;
@@ -46,9 +36,32 @@ function javascript(watch) {
 	}
 
 	bundler.on('update', rebundle);
-
 	return rebundle();
 }
+
+// Ref: https://github.com/dlmanning/gulp-sass
+gulp.task('sass', function() {
+	gulp.src(['./app/sass/*.scss', './app/sass/**/*.scss'])
+ 		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+ 		.pipe(rename({suffix: '.min'}))
+ 		.pipe(gulp.dest('./public/css'))
+});
+
+gulp.task('js', function() {
+  // browserify({ debug: true })
+  //   .transform(babelify)
+	 //  .require("./app/main.js", { entry: true })
+	 //  .bundle()
+	 //  .on("error", function(err) { console.log("Error: " + err.message);})
+	 //  .pipe(fs.createWriteStream("./public/scripts/bundle.js"));
+  
+  return javascript(false);	 
+});
+
+// watch functions
+gulp.task('watchSass', function() {
+	gulp.watch(['./app/sass/*.scss', './app/sass/**/*.scss'], ['sass']);
+});
 
 gulp.task('watchJs', function() {
   javascript(true)
@@ -62,7 +75,7 @@ gulp.task('startServer', function() {
 	})
 });
 
-gulp.task('default', ['watchJs', 'startServer']);
+gulp.task('default', ['watchJs', 'watchSass', 'startServer']);
 
 
 

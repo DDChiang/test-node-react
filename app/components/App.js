@@ -8,15 +8,14 @@ var Router = require('react-router'),
   RouteHandler = Router.RouteHandler;
 
 var App = React.createClass({
-  mixins : [Router.History],
-  displayName: 'App',
-  contextTypes: {
-    // For exposing the location object on the context (react-router=v1.0.0-rc3)
-    location: React.PropTypes.object
-  },
+  displayName: 'Index',
+  // contextTypes: {
+  //   // For exposing the location object on the context (react-router=v1.0.0-rc3)
+  //   location: React.PropTypes.object
+  // },
   render: function() {
     // The sub component of the application page is handled by "react-router"
-    var path = this.context.location.pathname;
+    var path = this.props.location.pathname;
      // If dynamic route, remove id
     if ( path.indexOf("/video/") === 0 ) {
       path = "/video";
