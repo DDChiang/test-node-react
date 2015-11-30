@@ -15,9 +15,7 @@ function javascript(watch) {
 	bundler = browserify('./app/main.js', {
 		basedir: __dirname,
 		debug: true,	//sub with !production later
-		cache: {},
-		transform: [babelify.configure({presets: ["es2015", "react"]})],
-		packageCache: {},
+		transform: [babelify.configure({presets: ["react", "es2015"]})],
 		fullPaths: watch
 	});
 
@@ -59,7 +57,7 @@ gulp.task('watchJs', function() {
   javascript(true)
 })
 
-gulp.task('startServer', function() {
+gulp.task('startServer', ['watchJs'], function() {
 	nodemon({
 		script: './server.js',
 	    watch: './',

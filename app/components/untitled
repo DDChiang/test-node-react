@@ -1,0 +1,16 @@
+var React = require('react');
+
+var Navbar = React.createClass({
+  render: function() {
+    return (
+      <nav>
+      	<ul>
+      		<li>a href="#">Link #1</a></li>
+      		<li>a href="#">Link #2</a></li>
+      	</ul>
+      </nav>
+    )
+  }
+});
+
+module.exports = Navbar;

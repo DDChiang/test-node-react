@@ -1,24 +1,16 @@
-var express = require('express'),
-  fs = require('fs'),
-  bodyParser = require('body-parser'),
-  path = require('path');
+var express = require('express');
+var  fs = require('fs');
+var  bodyParser = require('body-parser');
+var  path = require('path');
 
-//******************************************
-//* SERVER INITIALIZATION
-//* Setup all middleware
-//******************************************
+// SET UP EXPRESS
 var app = express();
-// View Engine
 app.set( 'view engine', 'ejs' );
-
 app.set('port', (process.env.PORT || 3000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//******************************************
-//* FRONTEND APPLICATION
-//******************************************
-//allow serving public files
+// SERVE FILES
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 var ejs = require('ejs');
@@ -27,7 +19,7 @@ var ejs = require('ejs');
 require('node-jsx').install(); // For loading the main JSX file
 var Application = require('./app/main.js');
 
-// All other routes are sent to the React application
+// 
 app.get('*', function(req, res) {
   var layout = ejs.compile(fs.readFileSync(path.resolve('views/index.ejs'), 'utf8'));
 

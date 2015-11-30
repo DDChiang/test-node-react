@@ -1,7 +1,9 @@
 var React = require('react'),
   ReactDOM = require('react-dom'),
   AppActionCreator = require('../creators/AppActionCreator'),
-  AppStore = require('../stores/AppStore');
+  AppStore = require('../stores/AppStore'),
+  Navbar = require('./Navbar'),
+  Footer = require('./Footer');
 
 // React router facility
 var Router = require('react-router'),
@@ -23,9 +25,12 @@ var App = React.createClass({
 
     return(
       <div>
-        <p>NIGHT Morning!</p>
-        { /*children are autmotically populated according to tehcurrent route by react router(>=v1.0.0)*/}
-        {this.props.children}
+        <Navbar />
+        
+          { /*children are autmotically populated according to tehcurrent route by react router(>=v1.0.0)*/}
+          {this.props.children}
+        
+        <Footer/>
       </div>
     )
   }
