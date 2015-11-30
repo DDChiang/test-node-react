@@ -23,6 +23,7 @@ var Application = require('./app/main.js');
 app.get('*', function(req, res) {
   var layout = ejs.compile(fs.readFileSync(path.resolve('views/index.ejs'), 'utf8'));
 
+
   Application.start({path: req.url}, function(err, root) {
     if ( err ) {
       res.sendStatus(500);
@@ -40,3 +41,4 @@ app.get('*', function(req, res) {
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
+

@@ -16,7 +16,8 @@ function javascript(watch) {
 		basedir: __dirname,
 		debug: true,	//sub with !production later
 		transform: [babelify.configure({presets: ["react", "es2015"]})],
-		fullPaths: watch
+		fullPaths: watch,
+		standalone: 'Application'	//must include this so index.ejs can access exported var
 	});
 
 	if ( watch ) {

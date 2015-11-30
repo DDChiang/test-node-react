@@ -16,25 +16,18 @@ var App = React.createClass({
   //   location: React.PropTypes.object
   // },
   render: function() {
-    // The sub component of the application page is handled by "react-router"
-    var path = this.props.location.pathname;
-     // If dynamic route, remove id
-    if ( path.indexOf("/video/") === 0 ) {
-      path = "/video";
-    }
-
     return(
-      <div>
-        <Navbar />
-        
-          { /*children are autmotically populated according to tehcurrent route by react router(>=v1.0.0)*/}
-          {this.props.children}
-        
-        <Footer/>
-      </div>
+    <div>
+      <Navbar />
+        { /*children are autmotically populated according to tehcurrent route by react router(>=v1.0.0)*/}
+        {this.props.children}
+      <Footer/>
+    </div>
     )
   }
 });
+
+
 
 module.exports = App;
 
