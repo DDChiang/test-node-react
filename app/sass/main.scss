@@ -1,2 +1,15 @@
+@import 'pages/recipePage';
+
 body {
+}
+
+.ingredField {
+  a {
+  	width: 40px;
+  	height: 40px;
+    display: block;
+    background: red;
+    text-align: center;
+    color: #fff;
+  }
 }
