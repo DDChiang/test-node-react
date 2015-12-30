@@ -1,3 +1,7 @@
+// editable field
+// specify 'handleEditItem' + 'handleDeleteItem' methods
+// specifiy 'placeholderVal' + 'refVal' props
+
 var React = require('react');
 
 var IngredItemField = React.createClass({

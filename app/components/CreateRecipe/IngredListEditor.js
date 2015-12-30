@@ -1,5 +1,5 @@
 var React = require('react');
-var IngredItemField = require('./IngredItemField');
+var FieldItem = require('./FieldItem');
 var RecipeStore = require('../../Stores/RecipeStore');
 var RecipeActionCreator = require('../../creators/RecipeActionCreator');
 var _ = require('lodash');
@@ -43,13 +43,13 @@ var IngredListEditor = React.createClass({
 
   },
   render: function() {
-    var ingredItems = ( <IngredItemField /> );
+    var ingredItems = ( <FieldItem /> );
     var placeholderVal = '2 tbsps of cheese';
 
     if (this.state.ingredData) {
       ingredItems = this.state.ingredData.map(function(item, i) {
         return (
-          <IngredItemField key={i} index={i} 
+          <FieldItem key={i} index={i} 
             refVal='ingred'
             placeholderVal={placeholderVal}
             itemData={item} 
