@@ -1,15 +1,40 @@
 var React = require('react');
 
+function assignSpan(match) {
+    // TODO: dynamically set ingred quicklink 'pop up' content inside dbase 'dictionary' to pull out later  
+    return ('<span class="ingred_quickLink">' + match + '</span>');
+}
+
 var RecipeSteps = React.createClass({
+  componentDidMount: function() {
+    var stepsContent = this.refs.list.innerHTML;
+    // check if ingred data has been cached
+    if (this.props.ingredCache) {
+      var ingredCache = this.props.ingredCache;
+      var ingredMatchExp = '';
+      for (var i = 0, icLength = ingredCache.length; i < icLength; i++) {
+        if (i < (icLength - 1)) {
+          ingredMatchExp += '\\b' + ingredCache[i] + '(?:s)?\\b\|';
+        } else {
+          ingredMatchExp += '\\b' + ingredCache[i] + '(?:s)?\\b';
+        }
+      }
+
+      var regPatt = new RegExp(ingredMatchExp, 'ig');
+      this.refs.list.innerHTML = stepsContent.replace(regPatt, assignSpan);
+    }
+  },
   render: function() {
+    var stepsList = this.props.stepsData.map(function(item, i) {
+      return (
+        <li key={i}>{item}</li> 
+      );
+    });
   	return (
   		<div className="steps">
   			<h1>Steps:</h1>
-  			<ul ref="list" >
-		        <li className="step">Carrot There is a carrot, apple, carrotapple, and kale in the carrot.</li>
-		        <li className="step">Peel the carrot</li>
-		        <li className="step">Wash the apples</li>
-		        <li className="step">Peel the kale</li>
+  			<ul ref="list" className="stepsList">
+		      {stepsList}
 		    </ul>
   		</div>
     );

@@ -2,38 +2,60 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Steps = require('./Recipe/Steps');
 var IngredList = require('./Recipe/IngredList');
-
-function assignSpan(match) {
-    // TODO: dynamically set ingred quicklink 'pop up' content inside dbase 'dictionary' to pull out later  
-    return '<span class="ingred_quickLink">' + match + '</span>';
-}
+var RecipeStore = require('../Stores/RecipeStore');
+var RecipeActionCreator = require('../creators/RecipeActionCreator');
+//edit stuff
+var IngredListEditor = require('./CreateRecipe/IngredListEditor');
 
 var RecipePage = React.createClass({
+  getInitialState: function() {
+    return ({
+      recipeData: RecipeStore.getRecipe(),
+      editState: false
+    });
+  },
   componentDidMount: function() {
-    // TODO: most likely, the 'parsing' will be done server side, then delivered to client side
-    var ingred = ['carrot', 'apple', 'kale'];
-    var stepsContent = this.refs.steps.refs.list.innerHTML;
-    var ingredList = '';
-    for (var i = 0, iLen = ingred.length; i < iLen; i++) {
-        if (i !== (iLen -1) ) {
-            ingredList += '\\b' + ingred[i] + '(?:s)?\\b\|';
-        } else {
-            ingredList += '\\b' + ingred[i] + '(?:s)?\\b';
-        }
-    }
-
-    var matchPatt = ingredList; // + '\/ig'
-    var regPatt = new RegExp(matchPatt, 'ig'); // starts RegExp w '/' and ends it wigh '/ig'
-
-    this.refs.steps.refs.list.innerHTML = stepsContent.replace(regPatt, assignSpan);
+    RecipeStore.addChangeListener(this._onChange);
+    RecipeActionCreator.getRecipe();
+  },
+  _onChange: function() {
+    // does this work?
+    this.setState({recipeData: RecipeStore.getRecipe()});
+  },
+  changeEditState: function(e) {
+    this.setState({editState: true});    
   },
   render: function() {
-    return (
-      <div>
-        <IngredList ref="ingredList" />
-        <Steps ref="steps"/>
-      </div>  
-    );
+    var ingredCache = ['carrot', 'apple', 'kale'];
+    // TODO: only show button if user viewing recipe is 1. logged in + 2. recipe belongs to user
+    var editRecipeBttn = (<a href="#edit" className="btn" onClick={this.changeEditState}>Edit Recipe</a>);
+    
+    // check if recipeData returns correctly
+    if (this.state.recipeData) {
+      if (this.state.editState) {
+        return (
+          <div>
+            <h1>Edit Recipe Stage</h1>
+            <IngredListEditor ingredData={this.state.recipeData.ingreds}/>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            {editRecipeBttn}
+            <h1>{this.state.recipeData.name}</h1>
+            <IngredList ref="ingredList" ingredData={this.state.recipeData.ingreds} />
+            <Steps ref="steps" stepsData={this.state.recipeData.steps} ingredCache={ingredCache}/>
+          </div>  
+        );
+      }
+
+    } else {
+      return (
+        <div>Sorry, we could not fish up the recipe</div>
+      );
+    }
+
   }
 });
 
