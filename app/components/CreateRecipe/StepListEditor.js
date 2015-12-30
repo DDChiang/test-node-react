@@ -62,7 +62,7 @@ var stepsListEditor = React.createClass({
   			<ul ref="list" >
            {stepsItems}
 		    </ul>
-        <a href="#" value="addItem" onClick={this.addItem} >Add</a>
+        <a href="#" value="addItem" onClick={this.addItem}>add step</a>
   		</form>
     );
   }

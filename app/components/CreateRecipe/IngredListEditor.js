@@ -65,7 +65,7 @@ var IngredListEditor = React.createClass({
   			<ul ref="list" >
            {ingredItems}
 		    </ul>
-        <a href="#" value="addItem" onClick={this.addItem} >Add</a>
+        <a href="#" value="addItem" onClick={this.addItem}>add ingredient</a>
   		</form>
     );
   }
