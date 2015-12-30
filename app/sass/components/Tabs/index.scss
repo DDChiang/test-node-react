@@ -1,0 +1,54 @@
+$numberTabs: 4;
+$tabHeaderHeight: 48px;
+
+.tabs {
+  background: red;
+  display: block;
+  height: auto;
+
+  .tabHeader {
+	width: 100%;
+	height: $tabHeaderHeight;
+	background: blue;
+	display: flex;
+	margin: 0;
+
+  	li {
+  	  list-style: none;
+  	  width: (100%/$numberTabs);
+  	  height: $tabHeaderHeight;
+  	  flex-grow: 1;
+  	  margin: 0;
+
+  	  a {
+  	  	display: block;    
+  	  	width: 100%;
+    	height: 100%;
+  	  }
+
+  	  &:hover {
+  	  	background: grey;
+  	  }
+
+  	  &.active {
+  	  	background: red;
+  	  }
+
+  	  
+  	}
+  }
+
+  .tabContent {
+  	width: 100%;
+  	background: green;
+  	padding: 1px;
+
+  	.innerContent {
+  	  display: none;
+
+  	  &.active {
+  	  	display: block;
+  	  }
+  	}
+  }
+}

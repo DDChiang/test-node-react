@@ -36,9 +36,9 @@ var TabHeader = React.createClass({
     }, this);
 
   	return (
-  		<div className="tabHeader">
+  		<ul className="tabHeader">
         {tabLinks}
-  		</div>
+  		</ul>
     );
   }
 });

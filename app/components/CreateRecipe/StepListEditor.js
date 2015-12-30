@@ -6,7 +6,7 @@ var FieldItem = require('./FieldItem');
 var stepsListEditor = React.createClass({
   getDefaultProps: function() {
     return {
-      stepsData: ['','','']
+      stepsData: ['']
     };
   },
   getInitialState: function() {
@@ -59,7 +59,7 @@ var stepsListEditor = React.createClass({
     } 
 
   	return (
-  		<form>
+  		<form className="stepListEditor">
   			<h1>Steps:</h1>
   			<ul ref="list" >
            {stepsItems}

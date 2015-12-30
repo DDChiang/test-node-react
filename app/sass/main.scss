@@ -1,15 +1,33 @@
-@import 'pages/recipePage';
+// basic --> complex layers
+// base
+@import 'base/index';
 
 body {
-}
-
-.ingredField {
-  a {
-  	width: 40px;
-  	height: 40px;
-    display: block;
-    background: red;
-    text-align: center;
-    color: #fff;
+  * {
+  	@include box-sizing(border-box);
   }
 }
+
+h1 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button, .btn {
+  width: auto;
+  height: 38px;
+  display: inline-block;
+  padding: 10px;
+}
+
+// components
+@import 'components/Tabs/index';
+
+// page overrides
+@import 'pages/recipePage';
+
+

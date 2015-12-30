@@ -13,8 +13,8 @@ var TabContent = require('./TabContent');
 
 var Tabs = React.createClass({
   getInitialState: function() {
+    // Create + check for step funneling
     return ({
-      step: 0,
       activeTab: 0
     });
   },
@@ -26,15 +26,32 @@ var Tabs = React.createClass({
   render: function() {
     // TODO:  tab component
       // tab component that redirects you thru steps
-  	return (
-    	<div className="tabs">
-    	 <TabHeader tabData={this.props.tabData} 
-          activeTab={this.state.activeTab} 
-          handleSwitchTab={this.switchTab} />
-       <TabContent tabContent={this.props.tabContent}
-          activeTab={this.state.activeTab}/>
-    	</div>
-    );
+
+    if (this.props.stepOrder) {
+      // components w diff event handlers?
+      // completely using parent props
+      
+      return (
+        <div className="tabs">
+         <TabHeader tabData={this.props.tabData} 
+            activeTab={this.props.activeTab} 
+            handleSwitchTab={this.props.handleSwitchTab} />
+         <TabContent tabContent={this.props.tabContent}
+            activeTab={this.props.activeTab}/>
+        </div>
+      );
+    } else {
+      // simple one
+      return (
+        <div className="tabs">
+         <TabHeader tabData={this.props.tabData} 
+            activeTab={this.state.activeTab} 
+            handleSwitchTab={this.switchTab} />
+         <TabContent tabContent={this.props.tabContent}
+            activeTab={this.state.activeTab}/>
+        </div>
+      );
+    }
   }
 });
 

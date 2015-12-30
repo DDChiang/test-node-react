@@ -1,0 +1,32 @@
+//border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius
+@mixin border-radius($prop) {
+  -webkit-border-radius: $prop;
+  -moz-border-radius: $prop;
+  -ms-border-radius: $prop;
+  -o-border-radius: $prop;
+  border-radius: $prop;	
+}
+
+@mixin transition($prop) {
+  -webkit-transition: $prop;
+  -moz-transition:  $prop;
+  -ms-transition:  $prop;
+  -o-transition:  $prop;
+  transition:  $prop;	
+}
+
+@mixin box-shadow($prop) {
+ -webkit-box-shadow: $prop;
+  -moz-box-shadow:  $prop;
+  -ms-box-shadow:  $prop;
+  -o-box-shadow:  $prop;
+  box-shadow:  $prop;	
+}
+
+@mixin box-sizing($prop) {
+   -webkit-box-sizing: $prop;
+  -moz-box-sizing:  $prop;
+  -ms-box-sizing:  $prop;
+  -o-box-sizing:  $prop;
+  box-sizing:  $prop; 
+}

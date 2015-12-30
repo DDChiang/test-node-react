@@ -9,7 +9,7 @@ var _ = require('lodash');
 var IngredListEditor = React.createClass({
   getDefaultProps: function() {
     return {
-      ingredData: ['','','']
+      ingredData: ['','']
     };
   },
   getInitialState: function() {
@@ -62,7 +62,7 @@ var IngredListEditor = React.createClass({
     } 
 
   	return (
-  		<form>
+  		<form className="ingredListEditor">
   			<h1>Ingredients:</h1>
   			<ul ref="list" >
            {ingredItems}

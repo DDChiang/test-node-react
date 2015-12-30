@@ -8,7 +8,6 @@ var TabLink = React.createClass({
   },
   render: function() {
     var name = this.props.itemData.name;
-    console.log(this.props.activeState);
   	return (
       <li className={classnames({active: this.props.activeState})} >
         <a href={this.props.hrefVal} data-id={this.props.dataID}

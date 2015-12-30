@@ -7,10 +7,10 @@ var Navbar = React.createClass({
     return (
       <nav>
       	<ul>
-          <li><Link to="/">IHome</Link></li>
-      		<li><Link to="/test">Test</Link></li>
+          <li><Link to="/">Home</Link></li>
       		<li><Link to="/recipe">Recipe</Link></li>
           <li><Link to="/createRecipe">Create Recipe</Link></li>
+          <li><Link to="/test">Edit Recipe</Link></li>
       	</ul>
       </nav>
     )
