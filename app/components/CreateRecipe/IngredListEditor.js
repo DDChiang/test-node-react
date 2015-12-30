@@ -11,16 +11,10 @@ var IngredListEditor = React.createClass({
     };
   },
   getInitialState: function() {
-    // return {
-    //   ingredData: RecipeStore.getRecipeIngreds()
-    // };
     return {
       ingredData: this.props.ingredData
     }
   },
-  // componentDidMount: function() {
-  //   RecipeStore.addChangeListener(this._onChange);
-  // },
   editItem: function(e) {
     var tempData = this.state.ingredData;
     tempData[e.target.getAttribute('data-id')] = e.target.value;
@@ -48,18 +42,17 @@ var IngredListEditor = React.createClass({
     } 
 
   },
-  // _onChange: function() {
-  //   this.setState({
-  //     ingredData: RecipeStore.getRecipeIngreds()
-  //   });
-  // },
   render: function() {
     var ingredItems = ( <IngredItemField /> );
-    
+    var placeholderVal = '2 tbsps of cheese';
+
     if (this.state.ingredData) {
       ingredItems = this.state.ingredData.map(function(item, i) {
         return (
-          <IngredItemField key={i} index={i} itemData={item} 
+          <IngredItemField key={i} index={i} 
+            refVal='ingred'
+            placeholderVal={placeholderVal}
+            itemData={item} 
             handleEditItem={this.editItem}
             handleDeleteItem={this.deleteItem}/>
         );

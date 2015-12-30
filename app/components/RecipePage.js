@@ -26,7 +26,9 @@ var RecipePage = React.createClass({
     this.setState({editState: true});    
   },
   render: function() {
+    // mock cache ingred data
     var ingredCache = ['carrot', 'apple', 'kale'];
+    
     // TODO: only show button if user viewing recipe is 1. logged in + 2. recipe belongs to user
     var editRecipeBttn = (<a href="#edit" className="btn" onClick={this.changeEditState}>Edit Recipe</a>);
     
@@ -55,7 +57,6 @@ var RecipePage = React.createClass({
         <div>Sorry, we could not fish up the recipe</div>
       );
     }
-
   }
 });
 
