@@ -26,8 +26,13 @@ var RecipeSteps = React.createClass({
   },
   render: function() {
     var stepsList = this.props.stepsData.map(function(item, i) {
+      var indexOrder = i + 1 + '.';
+
       return (
-        <li key={i}>{item}</li> 
+        <li key={i}>
+          <span className="order">{indexOrder}</span>
+          {item}
+        </li> 
       );
     });
   	return (

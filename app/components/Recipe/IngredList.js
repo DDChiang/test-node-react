@@ -3,7 +3,13 @@ var React = require('react');
 var IngredList = React.createClass({
   render: function() {
     var ingredList = this.props.ingredData.map(function(item, i) {
-      return (<li key={i} className="ingred">{item}</li>);
+      var indexOrder = i + 1 + '.';
+      return (
+        <li key={i} className="ingred">
+          <span className="order">{indexOrder}</span>
+          {item}
+        </li>
+      );
     });
   	return (
   		<div className="ingredList">

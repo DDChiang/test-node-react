@@ -58,7 +58,7 @@ var stepsListEditor = React.createClass({
 
   	return (
   		<form>
-  			<h1>stepsients:</h1>
+  			<h1>Steps:</h1>
   			<ul ref="list" >
            {stepsItems}
 		    </ul>
