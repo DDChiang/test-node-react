@@ -6,6 +6,7 @@ var RecipeStore = require('../Stores/RecipeStore');
 var RecipeActionCreator = require('../creators/RecipeActionCreator');
 //edit stuff
 var IngredListEditor = require('./CreateRecipe/IngredListEditor');
+var StepListEditor = require('./CreateRecipe/StepListEditor');
 
 var RecipePage = React.createClass({
   getInitialState: function() {
@@ -28,7 +29,7 @@ var RecipePage = React.createClass({
   render: function() {
     // mock cache ingred data
     var ingredCache = ['carrot', 'apple', 'kale'];
-    
+
     // TODO: only show button if user viewing recipe is 1. logged in + 2. recipe belongs to user
     var editRecipeBttn = (<a href="#edit" className="btn" onClick={this.changeEditState}>Edit Recipe</a>);
     
@@ -39,6 +40,7 @@ var RecipePage = React.createClass({
           <div>
             <h1>Edit Recipe Stage</h1>
             <IngredListEditor ingredData={this.state.recipeData.ingreds}/>
+            <StepListEditor stepsData={this.state.recipeData.steps}/>
           </div>
         );
       } else {
