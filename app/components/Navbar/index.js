@@ -11,7 +11,6 @@ var Navbar = React.createClass({
       		<li><Link to="/test">Test</Link></li>
       		<li><Link to="/recipe">Recipe</Link></li>
           <li><Link to="/createRecipe">Create Recipe</Link></li>
-
       	</ul>
       </nav>
     )

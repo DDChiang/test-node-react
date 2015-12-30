@@ -1,6 +1,8 @@
 var React = require('react');
 var FieldItem = require('./FieldItem');
 
+// TODO: DRAG REORDERING
+
 var stepsListEditor = React.createClass({
   getDefaultProps: function() {
     return {

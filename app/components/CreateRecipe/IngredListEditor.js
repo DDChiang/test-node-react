@@ -4,6 +4,8 @@ var RecipeStore = require('../../Stores/RecipeStore');
 var RecipeActionCreator = require('../../creators/RecipeActionCreator');
 var _ = require('lodash');
 
+// TODO: DRAG REORDERING
+
 var IngredListEditor = React.createClass({
   getDefaultProps: function() {
     return {
