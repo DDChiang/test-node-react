@@ -19,6 +19,7 @@ var CreateRecipePage = React.createClass({
     alert('cancel!');
   },
   handleNextStep:function() {
+    // TODO: validate if steps haven't been unlocked yet!!!!! 
     var currStep = this.state.step + 1;
     this.setState({step: currStep});
     console.log(currStep);
@@ -27,9 +28,10 @@ var CreateRecipePage = React.createClass({
     alert('save and publish!');
   },
   handleSwitchTab: function(e) {
-    // if step is unlocked? i.e. don't let them move on if name input not filled???
+    // TODO: if step is unlocked? i.e. don't let them move on if name input not filled???
     // orr... just don't allow them to publish. warn user that recipe cannot publish. can only save draft 
 
+    // TODO: validate if steps haven't been unlocked yet!!!!! 
     this.setState({step: e.target.getAttribute("data-id")});
   },
   render: function() {
