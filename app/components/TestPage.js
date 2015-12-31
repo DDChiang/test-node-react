@@ -4,6 +4,15 @@ var IngredListEditor = require('./CreateRecipe/IngredListEditor');
 var StepListEditor = require('./CreateRecipe/StepListEditor');
 var QuickFacts = require('./Recipe/QuickFacts');
 
+var tabData = [
+  {name: 'basic info'}, 
+  {name: 'ingredients'}, 
+  {name: 'steps'}, 
+  {name: 'quick facts'}
+];
+
+
+
 var TestPage = React.createClass({
   getInitialState: function() {
     return ({step: 0});
@@ -15,20 +24,12 @@ var TestPage = React.createClass({
     alert('save!');
   },
   render: function() {
-    var tabData = [
-      {name: 'basic info'}, 
-      {name: 'ingredients'}, 
-      {name: 'steps'}, 
-      {name: 'quick facts'}
-    ];
-
     var tabContent = [
       <IngredListEditor/>, 
       <StepListEditor/>, 
       <IngredListEditor/>,
       <QuickFacts/>
     ];
-
     // show 2 buttons for each: 1. cancel 2. save
   	return (
 	   <div className="createRecipe">
