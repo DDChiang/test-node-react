@@ -1,7 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Steps = require('./Recipe/Steps');
+var BasicInfo = require('./Recipe/BasicInfo');
 var IngredList = require('./Recipe/IngredList');
+var Steps = require('./Recipe/Steps');
 var RecipeStore = require('../Stores/RecipeStore');
 var RecipeActionCreator = require('../creators/RecipeActionCreator');
 //edit stuff
@@ -30,14 +31,16 @@ var RecipePage = React.createClass({
     // TODO: only show button if user viewing recipe is 1. logged in + 2. recipe belongs to user
     var editRecipeBttn = (<a href="/test" className="btn">Edit Recipe</a>);
     
+    // TODO use promises with actionCreator. On load ==> loading component. On error ==> return error message 
     // check if recipeData returns correctly
     if (this.state.recipeData) {
+      var recipeData = this.state.recipeData;
       return (
         <div>
           {editRecipeBttn}
-          <h1>{this.state.recipeData.name}</h1>
-          <IngredList ref="ingredList" ingredData={this.state.recipeData.ingreds} />
-          <Steps ref="steps" stepsData={this.state.recipeData.steps} ingredCache={ingredCache}/>
+          <BasicInfo ref="basicInfo" nameData={recipeData.name}/>
+          <IngredList ref="ingredList" ingredData={recipeData.ingreds} />
+          <Steps ref="steps" stepsData={recipeData.steps} ingredCache={ingredCache}/>
         </div>  
       );
     } else {

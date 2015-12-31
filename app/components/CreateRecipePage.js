@@ -1,5 +1,6 @@
 var React = require('react');
 var Tabs = require('./Tabs');
+var BasicInfoEditor = require('./CreateRecipe/BasicInfoEditor');
 var IngredListEditor = require('./CreateRecipe/IngredListEditor');
 var StepListEditor = require('./CreateRecipe/StepListEditor');
 var QuickFacts = require('./Recipe/QuickFacts');
@@ -37,7 +38,7 @@ var CreateRecipePage = React.createClass({
   render: function() {
     // Tab content
     var tabContent = [
-      <div>Basic Info.<br></br> Title<br></br>Upload Pic now or later</div>, 
+      <BasicInfoEditor/>, 
       <IngredListEditor/>,
       <StepListEditor/>, 
       <QuickFacts/>

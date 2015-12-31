@@ -1,4 +1,4 @@
-// editable field
+// editable field for recipe "list" components ie "ingredients" + "steps"
 // specify 'handleEditItem' + 'handleDeleteItem' methods
 // specifiy 'placeholderVal' + 'refVal' props
 

@@ -1,5 +1,6 @@
 var React = require('react');
 var Tabs = require('./Tabs');
+var BasicInfoEditor = require('./CreateRecipe/BasicInfoEditor');
 var IngredListEditor = require('./CreateRecipe/IngredListEditor');
 var StepListEditor = require('./CreateRecipe/StepListEditor');
 var QuickFacts = require('./Recipe/QuickFacts');
@@ -38,10 +39,11 @@ var TestPage = React.createClass({
     var tabContent = [];
 
     if (this.state.recipeData) {
+      var recipeData = this.state.recipeData;
       tabContent = [
-        <IngredListEditor ingredData={this.state.recipeData.ingreds}/>, 
-        <StepListEditor stepsData={this.state.recipeData.steps}/>, 
-        <IngredListEditor ingredData={this.state.recipeData.ingreds}/>,
+        <BasicInfoEditor nameData={recipeData.name}/>, 
+        <StepListEditor stepsData={recipeData.steps}/>, 
+        <IngredListEditor ingredData={recipeData.ingreds}/>,
         <QuickFacts/>
       ];
     }
