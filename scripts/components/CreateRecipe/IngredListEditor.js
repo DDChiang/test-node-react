@@ -20,6 +20,7 @@ export default class IngredListEditor extends Component {
   }
 
   editItem(e) {
+    console.log(e.target.getAttribute('data-id'));
     var tempData = this.state.ingredData;
     tempData[e.target.getAttribute('data-id')] = e.target.value;
     this.setState(tempData);
@@ -42,17 +43,19 @@ export default class IngredListEditor extends Component {
     var tempData = this.state.ingredData;
     var ingredLength = tempData.length;
 
+    console.log('length: ' + tempData.length);
+
     if ( tempData[ingredLength-1].trim() != '') {
       tempData = tempData.concat('');
       this.setState({ ingredData: tempData });
     } 
-
   }
 
   render() {
     let ingredItems = ( <FieldItem /> );
     const placeholderVal = '2 tbsps of cheese';
 
+    console.log(this.state.ingredData);
     if (this.state.ingredData) {
       ingredItems = this.state.ingredData.map(function(item, i) {
         return (
@@ -64,14 +67,7 @@ export default class IngredListEditor extends Component {
             handleDeleteItem={this.deleteItem}/>
         );
       }, this);
-    } else {
-      ingredItems = ( <FieldItem index={0} 
-        refVal='ingred'
-        placeholderVal={placeholderVal}
-        handleEditItem={this.editItem}
-        handleDeleteItem={this.deleteItem}/>
-      );
-    }
+    } 
 
     return (
      <form className="ingredListEditor">
@@ -86,5 +82,5 @@ export default class IngredListEditor extends Component {
 };
 
 IngredListEditor.defaultProps = {
-  ingredData: ''
+  ingredData: ['']
 }

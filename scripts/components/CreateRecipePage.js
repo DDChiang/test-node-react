@@ -48,13 +48,6 @@ export default class CreateRecipePage extends Component {
   }
 
   render() {
-    // Tab content
-    // var tabContent = [
-    //   <BasicInfoEditor/>, 
-    //   <IngredListEditor/>, //problem 
-    //   <StepListEditor/>,  //problem 
-    //   <QuickFacts/>
-    // ];
 
     let tabContent = [
       <BasicInfoEditor/>,

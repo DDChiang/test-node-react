@@ -75,5 +75,5 @@ export default class StepListEditor extends Component {
 };
 
 StepListEditor.defaultProps = {
-  stepsData: ''
+  stepsData: ['']
 }
